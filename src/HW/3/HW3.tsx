@@ -19,14 +19,13 @@ export const HW3 = () => {
      setCurrentText(event.currentTarget.value);
   };
 
-  const handleSave = (title:string) => {
+    const handleSave = () => {
+        if (currentText.trim() !== '') {
+            setTexts([...texts, currentText]);
+            setCurrentText('');
+        }
+    };
 
-    let newText = {title: title}
-    let newTexts = {newText, ...texts}
-    setTexts(newTexts)
-    // ЗАСЕТАТЬ БЫ ТЕКСТ В texts И НЕ ПОТЕРЯТЬ НАПУТСТВИЕ ИЗ ПРОШЛОГО ВЕКА)
-    // А ЗАТЕМ УБРАТЬ ЗА СОБОЙ В currentText
-  };
 
   return (
     <div id={'hw03'}>
@@ -38,9 +37,7 @@ export const HW3 = () => {
 
       <input id={'hw03-input'} type="text" value={currentText} onChange={handleChange} />
 
-      <button id={'hw03-button'} onClick={() => {
-        handleSave(currentText);
-        setTexts([currentText])}}>
+      <button id={'hw03-button'} onClick={handleSave}>
         Сохранить
       </button>
 
